@@ -1,3 +1,13 @@
 @import "tailwindcss/base";
 @import "tailwindcss/components";
 @import "tailwindcss/utilities";
+
+@import "@fontsource/lato";
+
+body {
+  font-family: "Lato", sans-serif;
+}
+
+a {
+  transition: .25s;
+}
