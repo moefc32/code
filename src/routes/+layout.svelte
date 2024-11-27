@@ -17,9 +17,8 @@
   <meta property="og:image" content="https://mf-chan.com/og.jpg" />
 
   <script
+    src="https://www.googletagmanager.com/gtag/js?id=UA-131278165-1"
     async
-    src={"https://www.googletagmanager.com/gtag/js?id=" +
-      import.meta.env.vite_google_tag}
   ></script>
   <script>
     window.dataLayer = window.dataLayer || [];
@@ -29,7 +28,7 @@
     }
 
     gtag("js", new Date());
-    gtag("config", import.meta.env.VITE_GOOGLE_TAG);
+    gtag("config", "UA-131278165-1");
   </script>
 </svelte:head>
 
