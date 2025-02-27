@@ -2,6 +2,7 @@
     import { onMount } from 'svelte';
     import { Chart } from 'chart.js/auto';
     import { toast } from 'svoast';
+    import AOS from 'aos';
 
     import Title from '$lib/component/Title.svelte';
 
@@ -15,8 +16,8 @@
     let techLanguages = {};
     let discord = [];
     let github = [];
-    let githubCurrentPage = 1;
-    let githubPageSize = 12;
+    let currentPage = 1;
+    let pageSize = parseInt(import.meta.env.VITE_PAGINATION_ITEMS, 10);
 
     // globalSearch: {
     //   query: "",
@@ -61,26 +62,26 @@
     // }
 
     function getPageItems() {
-        const startIndex = (githubCurrentPage - 1) * githubPageSize;
-        return github.slice(startIndex, startIndex + githubPageSize);
+        const startIndex = (currentPage - 1) * pageSize;
+        return github.slice(startIndex, startIndex + pageSize);
     }
 
     function totalPages() {
-        return Math.ceil(github.length / githubPageSize);
+        return Math.ceil(github.length / pageSize);
     }
 
     function goToPage(page) {
         if (page >= 1 && page <= totalPages()) {
-            githubCurrentPage = page;
+            currentPage = page;
         }
     }
 
     function prevPage() {
-        if (githubCurrentPage > 1) githubCurrentPage--;
+        if (currentPage > 1) currentPage--;
     }
 
     function nextPage() {
-        if (githubCurrentPage < totalPages()) githubCurrentPage++;
+        if (currentPage < totalPages()) currentPage++;
     }
 
     onMount(async () => {
