@@ -2,7 +2,7 @@
     export let discord;
 </script>
 
-<div class="flex flex-col gap-2 w-full">
+<div class="flex flex-col w-full">
     <h2 class="pb-2 text-lg border-b-[1px] border-gray-300">
         Community Membership
     </h2>
