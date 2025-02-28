@@ -4,7 +4,11 @@
     import { toast } from 'svoast';
     import AOS from 'aos';
 
-    import Title from '$lib/component/Title.svelte';
+    import Banner from '$lib/component/Banner.svelte';
+    import Membership from '$lib/component/Membership.svelte';
+    import Statistics from '$lib/component/Statistics.svelte';
+    import GitHubCard from '$lib/component/GitHubCard.svelte';
+    import Pagination from '$lib/component/Pagination.svelte';
 
     // const globalSearchModalEl = document.querySelector("#global-search");
     // const globalSearchModal =
@@ -66,25 +70,19 @@
         return github.slice(startIndex, startIndex + pageSize);
     }
 
-    function totalPages() {
+    function getTotalPages() {
         return Math.ceil(github.length / pageSize);
     }
 
-    function goToPage(page) {
-        if (page >= 1 && page <= totalPages()) {
+    function navigate(page) {
+        if (page !== currentPage && page >= 1 && page <= getTotalPages()) {
             currentPage = page;
         }
     }
 
-    function prevPage() {
-        if (currentPage > 1) currentPage--;
-    }
-
-    function nextPage() {
-        if (currentPage < totalPages()) currentPage++;
-    }
-
     onMount(async () => {
+        AOS.init();
+
         try {
             const response = await fetch(import.meta.env.VITE_BACKEND);
             const { data } = await response.json();
@@ -130,27 +128,51 @@
         } catch (e) {
             console.error(e);
             toast.error(
-                'Cannot fetch data from the backend, please try again later.',
+                'Cannot fetch data from the backend, please try again later!',
             );
         }
     });
 </script>
 
-<Title />
+<Banner />
 
-<div class="avatar mx-auto -mt-36">
-    <div class="w-44 border-white border-4 rounded-full">
-        <img src="https://mf-chan.com/og.jpg" alt="Faizal Chan." />
+<div class="flex flex-col items-center gap-4 mx-12 -mt-36">
+    <div class="avatar">
+        <div class="w-44 border-white border-4 rounded-full">
+            <img src="https://mf-chan.com/og.jpg" alt="Faizal Chan." />
+        </div>
+    </div>
+    <div class="flex flex-col items-center gap-1">
+        <div class="text-3xl">Faizal Chan.</div>
+        <div class="text-gray-500">UX Engineer, Web Developer</div>
+    </div>
+    <hr class="my-1 bg-gray-300 w-[50px] h-[5px] border-0" />
+    <div class="flex flex-wrap justify-center gap-[2px] max-w-[500px]">
+        {#each techStacks as item, i}
+            <span
+                class="badge {item.dark ? 'text-black' : 'text-white'}"
+                style="background: {item.color};"
+            >
+                {item.name}
+            </span>
+        {/each}
     </div>
 </div>
 
-<main class="flex-1 mx-12 my-6">
-    <h1>Welcome to SvelteKit</h1>
-    <p>
-        Visit <a href="https://svelte.dev/docs/kit">svelte.dev/docs/kit</a> to read
-        the documentation
-    </p>
-    <div class="card flex flex-1 py-3 h-[450px]">
-        <canvas bind:this={chartCanvas}></canvas>
+<main class="flex flex-1 flex-col gap-9 mx-12 my-6">
+    <Membership {discord} />
+    <Statistics bind:chartCanvas />
+    <div class="flex flex-col gap-6 w-full">
+        <h2 class="pb-2 text-lg border-b-[1px] border-gray-300">
+            Project Repositories
+        </h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4">
+            {#each getPageItems() as item, i}
+                <GitHubCard {item} />
+            {/each}
+        </div>
+        {#if github.length}
+            <Pagination {currentPage} {getTotalPages} {navigate} />
+        {/if}
     </div>
 </main>
