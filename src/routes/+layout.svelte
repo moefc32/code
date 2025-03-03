@@ -19,7 +19,7 @@
         property="og:description"
         content="Coding portfolios by Faizal Chan."
     />
-    <meta property="og:image" content="https://mf-chan.com/og.jpg" />
+    <meta property="og:image" content="/og.png" />
 
     <script
         src="https://www.googletagmanager.com/gtag/js?id=UA-131278165-1"
