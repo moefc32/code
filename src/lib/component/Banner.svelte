@@ -9,7 +9,7 @@
 <div class="flex flex-col items-center gap-4 mx-12 -mt-36">
     <div class="avatar">
         <div class="w-44 border-white border-4 rounded-full">
-            <img src="https://mf-chan.com/og.png" alt="Faizal Chan." />
+            <img src="/og.png" alt="Faizal Chan." />
         </div>
     </div>
     <div class="flex flex-col items-center gap-1">
