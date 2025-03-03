@@ -15,7 +15,7 @@
                     data-aos="fade-up"
                 >
                     <div
-                        class="!bg-contain w-[75px] min-w-[70px] aspect-square rounded-full border-[1px] border-gray-300"
+                        class="bg-contain! w-[75px] min-w-[70px] aspect-square rounded-full border-[1px] border-gray-300"
                         style="background: url({item.image}) center center no-repeat;"
                     ></div>
                     <div class="flex flex-1 flex-col w-full overflow-hidden">
