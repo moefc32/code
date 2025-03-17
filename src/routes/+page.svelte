@@ -10,7 +10,7 @@
     import GitHubCard from '$lib/component/GitHubCard.svelte';
     import Pagination from '$lib/component/Pagination.svelte';
 
-    // const globalSearchModalEl = document.querySelector("#global-search");
+    // const globalSearchModalEl = document.querySelector('#global-search');
     // const globalSearchModal =
     //   globalSearchModalEl && new bootstrap.Modal(globalSearchModalEl, {});
 
@@ -24,11 +24,11 @@
     let pageSize = parseInt(import.meta.env.VITE_PAGINATION_ITEMS, 10);
 
     // globalSearch: {
-    //   query: "",
-    //   queryModal: "",
+    //   query: '',
+    //   queryModal: '',
     //   toggle: false,
     //   loading: false,
-    //   backend: "https://api.mf-chan.com/search",
+    //   backend: 'https://api.mf-chan.com/search',
     //   searchTime: 0,
     //   searchResult: [],
     //   loadData: async function () {
@@ -54,7 +54,7 @@
     //     try {
     //       if (query) {
     //         queryModal = query;
-    //         query = "";
+    //         query = '';
 
     //         globalSearchModal.show();
     //         await loadData();
