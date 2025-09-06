@@ -12,15 +12,15 @@
     },
     "devDependencies": {
         "@sveltejs/adapter-static": "^3.0.9",
-        "@sveltejs/kit": "^2.37.0",
+        "@sveltejs/kit": "^2.37.1",
         "@sveltejs/vite-plugin-svelte": "^5.1.1",
-        "@tailwindcss/vite": "^4.1.12",
+        "@tailwindcss/vite": "^4.1.13",
         "daisyui": "5.0.0",
         "dotenv": "^16.6.1",
         "gh-pages": "^6.3.0",
-        "svelte": "^5.38.6",
+        "svelte": "^5.38.7",
         "svoast": "^3.0.3",
-        "tailwindcss": "^4.1.12",
+        "tailwindcss": "^4.1.13",
         "vite": "^6.3.5"
     },
     "dependencies": {
