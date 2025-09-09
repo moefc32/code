@@ -7,6 +7,12 @@
     import Footer from '$lib/component/Footer.svelte';
 
     const ogImage = `${import.meta.env.VITE_SITE_URL}/og.png`;
+
+    if ('serviceWorker' in navigator) {
+        addEventListener('load', function () {
+            navigator.serviceWorker.register('/service-worker.js');
+        });
+    }
 </script>
 
 <svelte:head>
