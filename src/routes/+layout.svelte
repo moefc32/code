@@ -8,7 +8,10 @@
 
     const ogImage = `${import.meta.env.VITE_SITE_URL}/og.png`;
 
-    if ('serviceWorker' in navigator) {
+    if (
+        'serviceWorker' in navigator &&
+        !['localhost', '127.0.0.1'].includes(location.hostname)
+    ) {
         addEventListener('load', function () {
             navigator.serviceWorker.register('/service-worker.js');
         });
@@ -28,6 +31,10 @@
         content="Coding portfolios by Faizal Chan."
     />
     <meta property="og:image" content={ogImage} />
+    <meta
+        name="description"
+        content="Browse coding portfolios by Faizal Chan, featuring projects, applications, and programming expertise."
+    />
 
     <script
         src="https://www.googletagmanager.com/gtag/js?id=UA-131278165-1"
