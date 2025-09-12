@@ -1,5 +1,6 @@
 <script>
     import { onMount } from 'svelte';
+    import { goto } from '$app/navigation';
     import { Chart } from 'chart.js/auto';
     import { toast } from 'svoast';
     import AOS from 'aos';
@@ -20,7 +21,7 @@
     let techLanguages = {};
     let discord = [];
     let github = [];
-    let currentPage = 1;
+    let currentPage = null;
     let pageSize = parseInt(import.meta.env.VITE_PAGINATION_ITEMS || '12', 10);
 
     // globalSearch: {
@@ -76,7 +77,37 @@
 
     function navigate(page) {
         if (page !== currentPage && page >= 1 && page <= getTotalPages()) {
+            const urlParams = new URLSearchParams(window.location.search);
+
             currentPage = page;
+            if (currentPage > 1) {
+                urlParams.set('page', currentPage);
+            } else {
+                urlParams.delete('page');
+            }
+
+            const newUrl =
+                urlParams.toString().length > 0
+                    ? `?${urlParams.toString()}`
+                    : window.location.pathname;
+
+            window.history.replaceState({}, '', newUrl);
+
+            setTimeout(() => {
+                const container = document.getElementById('github-container');
+
+                if (container) {
+                    const offset = 100;
+                    const top = Math.max(
+                        0,
+                        window.scrollY +
+                            container.getBoundingClientRect().top -
+                            offset,
+                    );
+
+                    window.scrollTo({ top, behavior: 'smooth' });
+                }
+            }, 10);
         }
     }
 
@@ -92,6 +123,25 @@
             discord = data.discord;
             github = data.github;
             dataLoading = false;
+
+            const urlParams = new URLSearchParams(window.location.search);
+            const pageFromUrl = parseInt(urlParams.get('page'));
+
+            if (
+                pageFromUrl &&
+                pageFromUrl > 1 &&
+                pageFromUrl <= getTotalPages()
+            ) {
+                currentPage = pageFromUrl;
+            } else {
+                currentPage = 1;
+
+                urlParams.delete('page');
+                goto(`?${urlParams.toString()}`, {
+                    replaceState: true,
+                    noscroll: true,
+                });
+            }
 
             const ctx = chartCanvas.getContext('2d');
             const languageChart = new Chart(ctx, {
@@ -139,14 +189,20 @@
 <main class="flex flex-1 flex-col gap-9 mx-12 my-6">
     <Membership {discord} />
     <Statistics bind:chartCanvas />
-    <div class="flex flex-col gap-6 w-full">
+    <div id="github-container" class="flex flex-col gap-6 w-full">
         <h2 class="pb-2 text-lg border-b-[1px] border-gray-300">
             Project Repositories
         </h2>
         <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4">
-            {#each getPageItems() as item, i}
-                <GitHubCard {item} />
-            {/each}
+            {#if getPageItems().length}
+                {#each getPageItems() as item, i}
+                    <GitHubCard {item} />
+                {/each}
+            {:else if currentPage !== null}
+                <div class="col-span-full py-24 text-gray-500 text-center">
+                    - No repository found -
+                </div>
+            {/if}
         </div>
         {#if github.length}
             <Pagination {currentPage} {getTotalPages} {navigate} />
