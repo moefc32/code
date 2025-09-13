@@ -1,11 +1,12 @@
 <script>
     import { onMount } from 'svelte';
-    import { goto } from '$app/navigation';
+    import { goto, replaceState } from '$app/navigation';
     import { Chart } from 'chart.js/auto';
     import { toast } from 'svoast';
     import AOS from 'aos';
 
     import Banner from '$lib/component/Banner.svelte';
+    import resetCurrentPage from '$lib/stores/resetCurrentPage';
     import Membership from '$lib/component/Membership.svelte';
     import Statistics from '$lib/component/Statistics.svelte';
     import GitHubCard from '$lib/component/GitHubCard.svelte';
@@ -21,6 +22,7 @@
     let techLanguages = {};
     let discord = [];
     let github = [];
+    let pageItems = [];
     let currentPage = null;
     let pageSize = parseInt(import.meta.env.VITE_PAGINATION_ITEMS || '12', 10);
 
@@ -66,16 +68,11 @@
     //   },
     // }
 
-    function getPageItems() {
-        const startIndex = (currentPage - 1) * pageSize;
-        return github.slice(startIndex, startIndex + pageSize);
-    }
-
     function getTotalPages() {
         return Math.ceil(github.length / pageSize);
     }
 
-    function navigate(page) {
+    function navigate(page, scroll = true) {
         if (page !== currentPage && page >= 1 && page <= getTotalPages()) {
             const urlParams = new URLSearchParams(window.location.search);
 
@@ -90,24 +87,26 @@
                 urlParams.toString().length > 0
                     ? `?${urlParams.toString()}`
                     : window.location.pathname;
+            replaceState(newUrl);
 
-            window.history.replaceState({}, '', newUrl);
+            if (scroll) {
+                setTimeout(() => {
+                    const container =
+                        document.getElementById('github-container');
 
-            setTimeout(() => {
-                const container = document.getElementById('github-container');
+                    if (container) {
+                        const offset = 100;
+                        const top = Math.max(
+                            0,
+                            window.scrollY +
+                                container.getBoundingClientRect().top -
+                                offset,
+                        );
 
-                if (container) {
-                    const offset = 100;
-                    const top = Math.max(
-                        0,
-                        window.scrollY +
-                            container.getBoundingClientRect().top -
-                            offset,
-                    );
-
-                    window.scrollTo({ top, behavior: 'smooth' });
-                }
-            }, 10);
+                        window.scrollTo({ top, behavior: 'smooth' });
+                    }
+                }, 10);
+            }
         }
     }
 
@@ -182,29 +181,53 @@
             );
         }
     });
+
+    $: {
+        if ($resetCurrentPage === true && github.length) {
+            navigate(1, false);
+            resetCurrentPage.set(null);
+        }
+
+        pageItems = github.length
+            ? github.slice(
+                  (currentPage - 1) * pageSize,
+                  (currentPage - 1) * pageSize + pageSize,
+              )
+            : [];
+    }
 </script>
 
-<Banner {techStacks} />
+<Banner {techStacks} {dataLoading} />
 
 <main class="flex flex-1 flex-col gap-9 mx-12 my-6">
-    <Membership {discord} />
+    <Membership {discord} {dataLoading} />
     <Statistics bind:chartCanvas />
     <div id="github-container" class="flex flex-col gap-6 w-full">
         <h2 class="pb-2 text-lg border-b-[1px] border-gray-300">
             Project Repositories
         </h2>
         <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4">
-            {#if getPageItems().length}
-                {#each getPageItems() as item, i}
-                    <GitHubCard {item} />
+            {#if !dataLoading}
+                {#if pageItems.length}
+                    {#each pageItems as item, i}
+                        <GitHubCard {item} />
+                    {/each}
+                {:else if currentPage !== null}
+                    <div class="col-span-full py-24 text-gray-500 text-center">
+                        - No repository found -
+                    </div>
+                {/if}
+            {:else}
+                {#each Array(pageSize) as _, i}
+                    <div class="flex flex-col" data-aos="fade-up">
+                        <div
+                            class="card bg-gray-200 w-full h-[154px] rounded-lg border-[1px] border-gray-300 shadow-lg animate-pulse"
+                        ></div>
+                    </div>
                 {/each}
-            {:else if currentPage !== null}
-                <div class="col-span-full py-24 text-gray-500 text-center">
-                    - No repository found -
-                </div>
             {/if}
         </div>
-        {#if github.length}
+        {#if pageItems.length}
             <Pagination {currentPage} {getTotalPages} {navigate} />
         {/if}
     </div>

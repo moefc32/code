@@ -1,5 +1,6 @@
 <script>
     export let techStacks;
+    export let dataLoading;
 </script>
 
 <section
@@ -18,13 +19,23 @@
     </div>
     <hr class="my-1 bg-gray-300 w-[50px] h-[5px] border-0" />
     <div class="flex flex-wrap justify-center gap-[2px] max-w-[500px]">
-        {#each techStacks as item, i}
-            <span
-                class="badge {item.dark ? 'text-black' : 'text-white'}"
-                style="background: {item.color};"
-            >
-                {item.name}
-            </span>
-        {/each}
+        {#if !dataLoading}
+            {#each techStacks as item, i}
+                <span
+                    class="badge {item.dark ? 'text-black' : 'text-white'}"
+                    style="background: {item.color};"
+                >
+                    {item.name}
+                </span>
+            {/each}
+        {:else}
+            {#each Array(9) as _, i}
+                <span
+                    class="badge bg-gray-200 w-24 border-[1px] border-gray-300 animate-pulse"
+                >
+                    &nbsp;
+                </span>
+            {/each}
+        {/if}
     </div>
 </div>
