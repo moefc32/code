@@ -11,17 +11,17 @@
         "deploy": "test -f .env && (pnpm build && wrangler deploy) || echo 'Error occured, deploy aborted!'"
     },
     "devDependencies": {
-        "@sveltejs/adapter-cloudflare": "^7.2.3",
-        "@sveltejs/kit": "^2.42.2",
+        "@sveltejs/adapter-cloudflare": "^7.2.4",
+        "@sveltejs/kit": "^2.46.4",
         "@sveltejs/vite-plugin-svelte": "^5.1.1",
-        "@tailwindcss/vite": "^4.1.13",
+        "@tailwindcss/vite": "^4.1.14",
         "daisyui": "5.0.0",
         "dotenv": "^16.6.1",
-        "svelte": "^5.39.3",
+        "svelte": "^5.39.11",
         "svoast": "^3.0.3",
-        "tailwindcss": "^4.1.13",
+        "tailwindcss": "^4.1.14",
         "vite": "^6.3.6",
-        "wrangler": "^4.38.0"
+        "wrangler": "^4.42.2"
     },
     "dependencies": {
         "@fontsource-variable/noto-sans": "^5.2.10",
