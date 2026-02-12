@@ -1,0 +1,8 @@
+@import 'tailwindcss';
+@plugin 'daisyui';
+
+@import '@fontsource-variable/noto-sans';
+
+body {
+    font-family: 'Noto Sans Variable', sans-serif;
+}

@@ -1,0 +1,11 @@
+name = "mfc-code"
+account_id = "68dca54a44bd4d964f21406a2a290007"
+compatibility_date = "2025-06-25"
+workers_dev = true
+preview_urls = false
+
+[observability.logs]
+enabled = true
+
+[assets]
+directory = "./dist"
