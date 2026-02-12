@@ -15,7 +15,7 @@
         >
             <img
                 class="block w-full"
-                src="https://github-readme-stats.vercel.app/api?username=moefc32&amp;rank_icon=github&amp;layout=compact&amp;theme=blueberry"
+                src="https://github-readme-stats-eight-theta.vercel.app/api?username=moefc32&theme=onedark"
                 alt="GitHub statistics"
             />
             <a

@@ -23,6 +23,6 @@ export default defineConfig({
         svelte(),
     ],
     server: {
-        port: 4104,
+        port: 4000,
     },
 });

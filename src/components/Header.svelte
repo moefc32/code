@@ -1,5 +1,5 @@
 <script>
-    import resetCurrentPage from '../lib/stores/resetCurrentPage';
+    import resetCurrentPage from '../lib/resetCurrentPage';
 
     function handleClick() {
         if (window.location.pathname === '/') {

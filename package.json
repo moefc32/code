@@ -6,7 +6,8 @@
     "scripts": {
         "dev": "astro dev",
         "build": "astro build",
-        "preview": "astro preview"
+        "preview": "astro preview",
+        "deploy": "test -f .env && (pnpm build && wrangler deploy) || echo 'Error occured, deploy aborted!'"
     },
     "devDependencies": {
         "@tailwindcss/vite": "^4.1.18",

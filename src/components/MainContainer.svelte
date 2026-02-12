@@ -5,7 +5,7 @@
     import AOS from 'aos';
 
     import Banner from '../components/Banner.svelte';
-    import resetCurrentPage from '../lib/stores/resetCurrentPage';
+    import resetCurrentPage from '../lib/resetCurrentPage';
     import Membership from '../components/Membership.svelte';
     import Statistics from '../components/Statistics.svelte';
     import GitHubCard from '../components/GitHubCard.svelte';
@@ -23,7 +23,10 @@
     let github = [];
     let pageItems = [];
     let currentPage = null;
-    let pageSize = parseInt(import.meta.env.PUBLIC_PAGINATION_ITEMS || '12', 10);
+    let pageSize = parseInt(
+        import.meta.env.PUBLIC_PAGINATION_ITEMS || '12',
+        10,
+    );
 
     // globalSearch: {
     //   query: '',
@@ -115,8 +118,8 @@
         try {
             const response = await fetch(import.meta.env.PUBLIC_BACKEND);
             const { data } = await response.json();
-            console.log(import.meta.env.PUBLIC_BACKEND)
-            console.log(data)
+            console.log(import.meta.env.PUBLIC_BACKEND);
+            console.log(data);
 
             techStacks = data.techStacks;
             techLanguages = data.techLanguages;
