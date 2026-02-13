@@ -11,7 +11,7 @@
     },
     "devDependencies": {
         "@tailwindcss/vite": "^4.1.18",
-        "daisyui": "5.0.0",
+        "daisyui": "5.5.18",
         "svoast": "^3.0.3",
         "tailwindcss": "^4.1.18",
         "vite-plugin-pwa": "^1.2.0",
@@ -23,8 +23,8 @@
         "aos": "^2.3.4",
         "astro": "^5.17.2",
         "echarts": "^6.0.0",
-        "lucide-svelte": "^0.460.1",
-        "svelte": "^5.50.2"
+        "lucide-svelte": "^0.563.0",
+        "svelte": "^5.51.0"
     },
     "pnpm": {
         "onlyBuiltDependencies": [
