@@ -8,7 +8,7 @@
     </h2>
     <div class="flex flex-col md:flex-row gap-3 w-full">
         <div class="flex-1 p-6 bg-white w-full aspect-3/1 rounded-md">
-            <canvas bind:this={chartCanvas}></canvas>
+            <div class="w-full h-full" bind:this={chartCanvas}></div>
         </div>
         <div
             class="flex flex-col justify-between gap-6 w-full md:w-1/2 lg:w-5/12 xl:w-1/3"

@@ -1,6 +1,6 @@
 <script>
-    import { onMount } from 'svelte';
-    import { Chart } from 'chart.js/auto';
+    import { onMount, onDestroy } from 'svelte';
+    import * as echarts from 'echarts';
     import { toast } from 'svoast';
     import AOS from 'aos';
 
@@ -27,6 +27,7 @@
         import.meta.env.PUBLIC_PAGINATION_ITEMS || '12',
         10,
     );
+    let chart;
 
     // globalSearch: {
     //   query: '',
@@ -69,6 +70,10 @@
     //     }
     //   },
     // }
+
+    function handleResize() {
+        if (chart) chart.resize();
+    }
 
     function getTotalPages() {
         return Math.ceil(github.length / pageSize);
@@ -118,8 +123,6 @@
         try {
             const response = await fetch(import.meta.env.PUBLIC_BACKEND);
             const { data } = await response.json();
-            console.log(import.meta.env.PUBLIC_BACKEND);
-            console.log(data);
 
             techStacks = data.techStacks;
             techLanguages = data.techLanguages;
@@ -143,44 +146,56 @@
                 history.replaceState(null, '', `?${urlParams.toString()}`);
             }
 
-            const ctx = chartCanvas.getContext('2d');
-            const languageChart = new Chart(ctx, {
-                type: 'bar',
-                options: {
-                    responsive: true,
-                    maintainAspectRatio: false,
-                    plugins: {
-                        legend: {
-                            display: false,
-                        },
-                        tooltip: {
-                            enabled: false,
-                        },
-                    },
-                    scales: {
-                        y: {
-                            ticks: {
-                                display: false,
-                            },
-                        },
-                    },
+            chart = echarts.init(chartCanvas);
+            chart.setOption({
+                responsive: true,
+                grid: {
+                    left: 0,
+                    right: 0,
+                    top: 0,
+                    bottom: 0,
+                    containLabel: false,
                 },
-                data: {
-                    labels: techLanguages.labels,
-                    datasets: [
-                        {
-                            data: techLanguages.counts,
-                            backgroundColor: techLanguages.colors,
-                        },
-                    ],
+                tooltip: {
+                    show: true,
                 },
+                xAxis: {
+                    type: 'category',
+                    data: techLanguages.labels,
+                },
+                yAxis: {
+                    type: 'value',
+                    axisTick: { show: false },
+                    axisLine: { show: false },
+                    axisLabel: { show: false },
+                    splitLine: { show: false },
+                },
+                series: [
+                    {
+                        type: 'bar',
+                        data: techLanguages.counts,
+                        itemStyle: {
+                            color: params =>
+                                techLanguages.colors[params.dataIndex],
+                        },
+                        barWidth: '60%',
+                    },
+                ],
             });
+
+            window.addEventListener('resize', handleResize);
         } catch (e) {
             console.error(e);
             toast.error(
                 'Cannot fetch data from the backend, please try again later!',
             );
         }
+    });
+
+    onDestroy(() => {
+        if (typeof window !== 'undefined')
+            window.removeEventListener('resize', handleResize);
+        if (chart) chart.dispose();
     });
 
     $: {

@@ -22,7 +22,7 @@
         "@fontsource-variable/noto-sans": "^5.2.10",
         "aos": "^2.3.4",
         "astro": "^5.17.2",
-        "chart.js": "^4.5.1",
+        "echarts": "^6.0.0",
         "lucide-svelte": "^0.460.1",
         "svelte": "^5.50.2"
     },
