@@ -3,6 +3,8 @@ import '../styles/global.css';
 import 'aos/dist/aos.css';
 import { Toasts } from 'svoast';
 
+import { ClientRouter } from 'astro:transitions';
+
 import Header from '../components/Header.svelte';
 import Footer from '../components/Footer.svelte';
 import RegisterSW from '../components/RegisterSW.svelte';
@@ -37,6 +39,8 @@ const openGraph = {
         <meta property="og:description" content={openGraph.description} />
         <meta property="og:image" content="/og.png" />
         <meta property="og:type" content="website" />
+
+        <ClientRouter />
 
         <script
             src="https://www.googletagmanager.com/gtag/js?id=UA-131278165-1"
