@@ -15,11 +15,11 @@
                     data-aos="fade-up"
                 >
                     <div
-                        class="card flex flex-row items-center gap-3 px-4 w-full h-[95px] border-[1px] border-gray-300 shadow-lg"
+                        class="card flex flex-row items-center gap-3 px-4 w-full h-[95px] border-1 border-gray-300 shadow-lg"
                         title={item.name}
                     >
                         <div
-                            class="bg-contain! w-[75px] min-w-[70px] aspect-square rounded-full border-[1px] border-gray-300"
+                            class="bg-contain! w-[75px] min-w-[70px] aspect-square rounded-full border-1 border-gray-300"
                             style="background: url({item.image}) center center no-repeat;"
                         ></div>
                         <div
@@ -45,7 +45,7 @@
                     data-aos="fade-up"
                 >
                     <div
-                        class="card px-4 bg-gray-200 w-full h-[95px] border-[1px] border-gray-300 shadow-lg animate-pulse"
+                        class="card px-4 bg-gray-200 w-full h-[95px] border-1 border-gray-300 shadow-lg animate-pulse"
                     ></div>
                 </div>
             {/each}

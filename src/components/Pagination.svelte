@@ -9,7 +9,7 @@
 <div class="flex justify-center items-center gap-3">
     <div class="join shadow">
         <select
-            class="select appearance-none pe-9 border-[1px] border-gray-200 rounded-s-md"
+            class="select appearance-none pe-9 border-1 border-gray-200 rounded-s-md"
             title="Navigate to page"
             bind:value={currentPage}
             on:click={() => navigate(currentPage)}
@@ -21,7 +21,7 @@
             {/each}
         </select>
         <button
-            class="join-item px-3 text-sm font-normal border-[1px] border-gray-200"
+            class="join-item px-3 text-sm font-normal border-1 border-gray-200"
             aria-label={`Total of ${getTotalPages()} ${getTotalPages() > 1 ? 'pages' : 'page'}`}
         >
             <span class="text-nowrap">

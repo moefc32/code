@@ -31,7 +31,7 @@
         {:else}
             {#each Array(9) as _, i}
                 <span
-                    class="badge bg-gray-200 w-24 border-[1px] border-gray-300 animate-pulse"
+                    class="badge bg-gray-200 w-24 border-1 border-gray-300 animate-pulse"
                 >
                     &nbsp;
                 </span>

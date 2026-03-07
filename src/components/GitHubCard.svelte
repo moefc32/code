@@ -5,7 +5,7 @@
 
 <div class="flex flex-col gap-3" data-aos="fade-up">
     <div
-        class="card flex-row gap-3 p-4 w-full rounded-lg border-[1px] border-gray-300 shadow-lg relative"
+        class="card flex-row gap-3 p-4 w-full rounded-lg border-1 border-gray-300 shadow-lg relative"
         title={item.title}
     >
         <GitCommitHorizontal size={28} />

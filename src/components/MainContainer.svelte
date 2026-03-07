@@ -237,7 +237,7 @@
                 {#each Array(pageSize) as _, i}
                     <div class="flex flex-col" data-aos="fade-up">
                         <div
-                            class="card bg-gray-200 w-full h-[154px] rounded-lg border-[1px] border-gray-300 shadow-lg animate-pulse"
+                            class="card bg-gray-200 w-full h-[154px] rounded-lg border-1 border-gray-300 shadow-lg animate-pulse"
                         ></div>
                     </div>
                 {/each}
