@@ -3,6 +3,7 @@
     import * as echarts from 'echarts';
     import { toast } from 'svoast';
     import AOS from 'aos';
+    import ky from 'ky';
 
     import Banner from '../components/Banner.svelte';
     import resetCurrentPage from '../lib/resetCurrentPage';
@@ -10,10 +11,6 @@
     import Statistics from '../components/Statistics.svelte';
     import GitHubCard from '../components/GitHubCard.svelte';
     import Pagination from '../components/Pagination.svelte';
-
-    // const globalSearchModalEl = document.querySelector('#global-search');
-    // const globalSearchModal =
-    //   globalSearchModalEl && new bootstrap.Modal(globalSearchModalEl, {});
 
     let dataLoading = true;
     let chartCanvas = '';
@@ -28,48 +25,6 @@
         10,
     );
     let chart;
-
-    // globalSearch: {
-    //   query: '',
-    //   queryModal: '',
-    //   toggle: false,
-    //   loading: false,
-    //   backend: import.meta.env.PUBLIC_SEARCH_URL,
-    //   searchTime: 0,
-    //   searchResult: [],
-    //   loadData: async function () {
-    //     searchResult = [];
-
-    //     try {
-    //       if (queryModal) {
-    //         loading = true;
-    //         const response = await fetch(
-    //           `${backend}?q=${queryModal}`
-    //         );
-
-    //         searchTime = response.data.data.searchTime;
-    //         searchResult = response.data.data.searchResult;
-    //       }
-    //     } catch (e) {
-    //       console.error(e);
-    //     }
-
-    //     loading = false;
-    //   },
-    //   open: async function () {
-    //     try {
-    //       if (query) {
-    //         queryModal = query;
-    //         query = '';
-
-    //         globalSearchModal.show();
-    //         await loadData();
-    //       }
-    //     } catch (e) {
-    //       console.error(e);
-    //     }
-    //   },
-    // }
 
     function handleResize() {
         if (chart) chart.resize();
@@ -121,8 +76,9 @@
         AOS.init();
 
         try {
-            const response = await fetch(import.meta.env.PUBLIC_BACKEND);
-            const { data } = await response.json();
+            const { data } = await ky
+                .get(import.meta.env.PUBLIC_BACKEND)
+                .json();
 
             techStacks = data.techStacks;
             techLanguages = data.techLanguages;
@@ -216,7 +172,7 @@
 <Banner {techStacks} {dataLoading} />
 
 <main class="flex flex-1 flex-col gap-9 mx-12 my-6">
-    <Membership {discord} {dataLoading} />
+    <!-- <Membership {discord} {dataLoading} /> -->
     <Statistics bind:chartCanvas />
     <div id="github-container" class="flex flex-col gap-6 w-full">
         <h2 class="pb-2 text-lg border-b-[1px] border-gray-300">

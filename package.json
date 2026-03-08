@@ -23,8 +23,9 @@
         "aos": "^2.3.4",
         "astro": "^5.18.0",
         "echarts": "^6.0.0",
+        "ky": "^1.14.3",
         "lucide-svelte": "^0.563.0",
-        "svelte": "^5.53.7"
+        "svelte": "^5.53.8"
     },
     "pnpm": {
         "onlyBuiltDependencies": [
