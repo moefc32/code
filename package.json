@@ -15,17 +15,17 @@
         "svoast": "^3.0.3",
         "tailwindcss": "^4.2.1",
         "vite-plugin-pwa": "^1.2.0",
-        "wrangler": "^4.71.0"
+        "wrangler": "^4.72.0"
     },
     "dependencies": {
         "@astrojs/svelte": "^7.2.5",
         "@fontsource-variable/noto-sans": "^5.2.10",
         "aos": "^2.3.4",
-        "astro": "^5.18.0",
+        "astro": "^5.18.1",
         "echarts": "^6.0.0",
         "ky": "^1.14.3",
         "lucide-svelte": "^0.563.0",
-        "svelte": "^5.53.8"
+        "svelte": "^5.53.10"
     },
     "pnpm": {
         "onlyBuiltDependencies": [
