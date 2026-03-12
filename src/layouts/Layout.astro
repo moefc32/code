@@ -1,7 +1,8 @@
 ---
+// @ts-nocheck
 import '../styles/global.css';
 import 'aos/dist/aos.css';
-import { Toasts } from 'svoast';
+import { Toaster } from 'svelte-sonner';
 
 import { ClientRouter } from 'astro:transitions';
 
@@ -16,9 +17,15 @@ const siteDescription =
     'Browse coding portfolios by Faizal Chan, featuring projects, applications, and programming expertise.';
 const openGraph = {
     title: import.meta.env.PUBLIC_APP_NAME,
-    siteName: 'Faizal Chan\'s Website',
+    siteName: "Faizal Chan's Website",
     description: 'Coding portfolios by Faizal Chan.',
 };
+const toasterProps = {
+    richColors: true,
+    theme: 'system',
+    position: 'top-right',
+    toastOptions: { style: 'background: var(--color-bg);' },
+} as any;
 ---
 
 <!doctype html>
@@ -66,7 +73,15 @@ const openGraph = {
             <Header client:load />
             <slot />
             <Footer client:load />
-            <Toasts client:load position={'bottom-center'} />
+            <Toaster
+                client:load
+                richColors
+                theme="system"
+                position="bottom-center"
+                toastOptions={{
+                    style: 'font-size: 1rem;',
+                }}
+            />
         </div>
         <RegisterSW client:load />
     </body>

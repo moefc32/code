@@ -1,13 +1,13 @@
 <script>
     import { onMount, onDestroy } from 'svelte';
+    import { toast } from 'svelte-sonner';
     import * as echarts from 'echarts';
-    import { toast } from 'svoast';
     import AOS from 'aos';
     import ky from 'ky';
 
     import Banner from '../components/Banner.svelte';
     import resetCurrentPage from '../lib/resetCurrentPage';
-    import Membership from '../components/Membership.svelte';
+    // import Membership from '../components/Membership.svelte';
     import Statistics from '../components/Statistics.svelte';
     import GitHubCard from '../components/GitHubCard.svelte';
     import Pagination from '../components/Pagination.svelte';
@@ -142,9 +142,7 @@
             window.addEventListener('resize', handleResize);
         } catch (e) {
             console.error(e);
-            toast.error(
-                'Cannot fetch data from the backend, please try again later!',
-            );
+            toast.error('Cannot fetch data, please try again later!');
         }
     });
 
