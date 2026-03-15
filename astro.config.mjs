@@ -1,7 +1,10 @@
+import { setMaxListeners } from 'events';
 import { defineConfig } from 'astro/config';
 import svelte from '@astrojs/svelte';
 import tailwindcss from '@tailwindcss/vite';
 import { VitePWA } from 'vite-plugin-pwa';
+
+setMaxListeners(12);
 
 export default defineConfig({
     vite: {
