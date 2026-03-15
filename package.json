@@ -7,24 +7,23 @@
         "dev": "astro dev",
         "build": "astro build",
         "preview": "astro preview",
-        "deploy": "test -f .env && (pnpm build && wrangler deploy) || echo 'Error occured, deploy aborted!'"
+        "deploy": "test -f .env && (astro build && wrangler deploy) || echo 'Error occured, deploy aborted!'"
     },
     "devDependencies": {
         "@tailwindcss/vite": "^4.2.1",
         "daisyui": "^5.5.19",
         "tailwindcss": "^4.2.1",
-        "vite-plugin-pwa": "^1.2.0",
-        "wrangler": "^4.73.0"
+        "vite-plugin-pwa": "^1.2.0"
     },
     "dependencies": {
-        "@astrojs/svelte": "^8.0.0",
+        "@astrojs/svelte": "^8.0.1",
         "@fontsource-variable/noto-sans": "^5.2.10",
         "aos": "^2.3.4",
-        "astro": "^6.0.4",
+        "astro": "^6.0.5",
         "echarts": "^6.0.0",
         "ky": "^1.14.3",
         "lucide-svelte": "^0.563.0",
-        "svelte": "^5.53.12",
+        "svelte": "^5.54.0",
         "svelte-sonner": "^1.1.0"
     },
     "pnpm": {

@@ -1,6 +1,6 @@
 <script>
     import { onMount, onDestroy } from 'svelte';
-    import { toast } from 'svelte-sonner';
+    import { Toaster, toast } from 'svelte-sonner';
     import * as echarts from 'echarts';
     import AOS from 'aos';
     import ky from 'ky';
@@ -97,9 +97,16 @@
                 currentPage = pageFromUrl;
             } else {
                 currentPage = 1;
-
                 urlParams.delete('page');
-                history.replaceState(null, '', `?${urlParams.toString()}`);
+
+                const queryString = urlParams.toString();
+                const suffix = queryString ? `?${queryString}` : '';
+
+                history.replaceState(
+                    null,
+                    '',
+                    window.location.pathname + suffix,
+                );
             }
 
             chart = echarts.init(chartCanvas);
@@ -202,3 +209,12 @@
         {/if}
     </div>
 </main>
+
+<Toaster
+    richColors
+    theme="system"
+    position="bottom-center"
+    toastOptions={{
+        style: 'font-size: 1rem;',
+    }}
+/>
