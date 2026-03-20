@@ -10,20 +10,20 @@
         "deploy": "test -f .env && (astro build && wrangler deploy) || echo 'Error occured, deploy aborted!'"
     },
     "devDependencies": {
-        "@tailwindcss/vite": "^4.2.1",
+        "@tailwindcss/vite": "^4.2.2",
         "daisyui": "^5.5.19",
-        "tailwindcss": "^4.2.1",
+        "tailwindcss": "^4.2.2",
         "vite-plugin-pwa": "^1.2.0"
     },
     "dependencies": {
-        "@astrojs/svelte": "^8.0.1",
+        "@astrojs/svelte": "^8.0.3",
         "@fontsource-variable/noto-sans": "^5.2.10",
         "aos": "^2.3.4",
-        "astro": "^6.0.5",
+        "astro": "^6.0.8",
         "echarts": "^6.0.0",
         "ky": "^1.14.3",
         "lucide-svelte": "^0.563.0",
-        "svelte": "^5.54.0",
+        "svelte": "^5.54.1",
         "svelte-sonner": "^1.1.0"
     },
     "pnpm": {

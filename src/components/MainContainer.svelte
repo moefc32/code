@@ -7,7 +7,7 @@
 
     import Banner from '../components/Banner.svelte';
     import resetCurrentPage from '../lib/resetCurrentPage';
-    // import Membership from '../components/Membership.svelte';
+    import Membership from '../components/Membership.svelte';
     import Statistics from '../components/Statistics.svelte';
     import GitHubCard from '../components/GitHubCard.svelte';
     import Pagination from '../components/Pagination.svelte';
@@ -177,7 +177,7 @@
 <Banner {techStacks} {dataLoading} />
 
 <main class="flex flex-1 flex-col gap-9 mx-12 my-6">
-    <!-- <Membership {discord} {dataLoading} /> -->
+    <Membership {discord} {dataLoading} />
     <Statistics bind:chartCanvas />
     <div id="github-container" class="flex flex-col gap-6 w-full">
         <h2 class="pb-2 text-lg border-b-[1px] border-gray-300">
