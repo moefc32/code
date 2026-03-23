@@ -18,7 +18,7 @@
         <div class="text-gray-500">UX Engineer, Web Developer</div>
     </div>
     <hr class="my-1 bg-gray-300 w-[50px] h-[5px] border-0" />
-    <div class="flex flex-wrap justify-center gap-[2px] max-w-[500px]">
+    <div class="flex flex-wrap justify-center gap-[2px] max-w-[550px]">
         {#if !dataLoading}
             {#each techStacks as item, i}
                 <span
