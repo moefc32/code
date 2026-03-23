@@ -1,8 +1,3 @@
-<script>
-    const getYear = new Date().getFullYear();
-    const currentYear = (getYear > 2018 ? `2018 - ` : '') + getYear;
-</script>
-
 <footer
     class="flex flex-col md:flex-row mx-6 mt-5 px-6 py-5 border-t-[1px] border-gray-300 text-gray-500 text-center"
 >
@@ -14,7 +9,8 @@
         >
             Mfc
         </a>
-        &copy; {currentYear}
+        &copy;
+        <span data-footer-year></span>
     </div>
     <div class="flex-1 text-center md:text-right">
         This web page is licensed under
@@ -27,3 +23,11 @@
         </a>
     </div>
 </footer>
+
+<script is:inline>
+    const getYear = new Date().getFullYear();
+    const currentYear = (getYear > 2018 ? `2018 - ` : '') + getYear;
+
+    const footerYear = document.querySelector('[data-footer-year]');
+    if (footerYear) footerYear.textContent = currentYear;
+</script>

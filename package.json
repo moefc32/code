@@ -23,7 +23,7 @@
         "echarts": "^6.0.0",
         "ky": "^1.14.3",
         "lucide-svelte": "^0.563.0",
-        "svelte": "^5.54.1",
+        "svelte": "^5.55.0",
         "svelte-sonner": "^1.1.0"
     },
     "pnpm": {
