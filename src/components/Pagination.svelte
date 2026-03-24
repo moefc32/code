@@ -22,7 +22,6 @@
         </select>
         <button
             class="join-item px-3 text-sm font-normal border-1 border-gray-200"
-            aria-label={`Total of ${getTotalPages()} ${getTotalPages() > 1 ? 'pages' : 'page'}`}
         >
             <span class="text-nowrap">
                 of {getTotalPages()}

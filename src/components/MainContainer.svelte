@@ -7,11 +7,12 @@
 
     import resetCurrentPage from '../lib/stores/resetCurrentPage';
 
-    import Banner from '../components/Banner.svelte';
-    import Membership from '../components/Membership.svelte';
-    import Statistics from '../components/Statistics.svelte';
-    import GitHubCard from '../components/GitHubCard.svelte';
-    import Pagination from '../components/Pagination.svelte';
+    import Banner from './Banner.svelte';
+    import DomainNode from './DomainNode.svelte';
+    import Membership from './Membership.svelte';
+    import Statistics from './Statistics.svelte';
+    import GitHubCard from './GitHubCard.svelte';
+    import Pagination from './Pagination.svelte';
 
     let dataLoading = true;
     let chartCanvas = '';
@@ -209,6 +210,7 @@
             <Pagination {currentPage} {getTotalPages} {navigate} />
         {/if}
     </div>
+    <DomainNode base={'code'} nodes={['research', 'design']} />
 </main>
 
 <Toaster
