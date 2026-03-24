@@ -19,7 +19,7 @@
     let techStacks = [];
     let techLanguages = {};
     let discord = [];
-    let github = [];
+    let github = {};
     let pageItems = [];
     let currentPage = null;
     let pageSize = parseInt(
@@ -33,7 +33,7 @@
     }
 
     function getTotalPages() {
-        return Math.ceil(github.length / pageSize);
+        return Math.ceil(github.repos?.length / pageSize);
     }
 
     function navigate(page, scroll = true) {
@@ -162,13 +162,13 @@
     });
 
     $: {
-        if ($resetCurrentPage === true && github.length) {
+        if ($resetCurrentPage === true && github.repos?.length) {
             navigate(1, false);
             resetCurrentPage.set(null);
         }
 
-        pageItems = github.length
-            ? github.slice(
+        pageItems = github.repos?.length
+            ? github.repos?.slice(
                   (currentPage - 1) * pageSize,
                   (currentPage - 1) * pageSize + pageSize,
               )
@@ -179,7 +179,7 @@
 <Banner {techStacks} {dataLoading} />
 
 <main class="flex flex-1 flex-col gap-9 mx-12 my-6">
-    <Statistics bind:chartCanvas />
+    <Statistics bind:chartCanvas {github} />
     <Membership {discord} {dataLoading} />
     <div id="github-container" class="flex flex-col gap-6 w-full">
         <h2 class="pb-2 text-lg border-b-[1px] border-gray-300">

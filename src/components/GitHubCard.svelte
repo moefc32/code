@@ -14,7 +14,11 @@
             <div class="flex flex-col gap-1 mt-2 mb-4">
                 <div class="truncate">{item.description}</div>
                 <div class="text-sm truncate">
-                    <a href={item.url} target="_blank" class="text-blue-600">
+                    <a
+                        href={item.url}
+                        target="_blank"
+                        class="text-blue-500 hover:text-green-500 underline"
+                    >
                         {item.url}
                     </a>
                 </div>
