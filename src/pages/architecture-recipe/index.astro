@@ -1,0 +1,33 @@
+---
+// @ts-nocheck
+import Layout from '../../layouts/Page.astro';
+
+const pageTitle = 'Architecture Recipes';
+const posts = Object.values(
+    import.meta.glob('./*.md', {
+        eager: true,
+    }),
+).sort(
+    (a, b) =>
+        new Date(b.frontmatter.date).getTime() -
+        new Date(a.frontmatter.date).getTime(),
+);
+---
+
+<Layout {pageTitle}>
+    {
+        posts.length > 0 ? (
+            <ul>
+                {posts.map(post => (
+                    <li>
+                        <a href={post.url}>{post.frontmatter.title}</a>
+                    </li>
+                ))}
+            </ul>
+        ) : (
+            <div class="my-auto text-gray-500 text-center">
+                - There is currently no post to show -
+            </div>
+        )
+    }
+</Layout>
