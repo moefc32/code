@@ -4,7 +4,6 @@ import 'aos/dist/aos.css';
 
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
-import RegisterSW from '../components/RegisterSW.astro';
 
 const { pageTitle } = Astro.props;
 
@@ -61,6 +60,5 @@ const openGraph = {
             <slot />
             <Footer />
         </div>
-        <RegisterSW />
     </body>
 </html>

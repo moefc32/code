@@ -11,9 +11,9 @@
     },
     "devDependencies": {
         "@tailwindcss/vite": "^4.2.2",
+        "@vite-pwa/astro": "^1.2.0",
         "daisyui": "^5.5.19",
-        "tailwindcss": "^4.2.2",
-        "vite-plugin-pwa": "^1.2.0"
+        "tailwindcss": "^4.2.2"
     },
     "dependencies": {
         "@astrojs/svelte": "^8.0.3",
