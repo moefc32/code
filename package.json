@@ -16,10 +16,10 @@
         "tailwindcss": "^4.2.2"
     },
     "dependencies": {
-        "@astrojs/svelte": "^8.0.3",
+        "@astrojs/svelte": "^8.0.4",
         "@fontsource-variable/noto-sans": "^5.2.10",
         "aos": "^2.3.4",
-        "astro": "^6.0.8",
+        "astro": "^6.1.1",
         "echarts": "^6.0.0",
         "ky": "^1.14.3",
         "lucide-svelte": "^0.563.0",
