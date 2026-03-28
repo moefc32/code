@@ -4,7 +4,7 @@
 </script>
 
 <section
-    class="mb-5 px-3 pt-[120px] pb-5 bg-[linear-gradient(to_bottom_left,rgba(33,150,243,0.75),rgba(76,175,80,0.75))] bg-fixed text-white text-center h-[250px]"
+    class="mb-5 px-3 pt-30 pb-5 bg-[linear-gradient(to_bottom_left,rgba(33,150,243,0.75),rgba(76,175,80,0.75))] bg-fixed text-white text-center h-64"
 ></section>
 
 <div class="flex flex-col items-center gap-4 mx-12 -mt-36">
@@ -29,8 +29,8 @@
             </p>
         </div>
     </div>
-    <hr class="mt-1 mb-6 bg-gray-300 w-[50px] h-[5px] border-0" />
-    <div class="flex flex-wrap justify-center gap-[2px] mb-3 max-w-[550px]">
+    <hr class="mt-1 mb-6 bg-gray-300 w-12 h-1 border-0" />
+    <div class="flex flex-wrap justify-center gap-0.5 mb-3 max-w-140">
         {#if !dataLoading}
             {#each techStacks as item, i}
                 <span

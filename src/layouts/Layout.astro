@@ -7,7 +7,7 @@ import Footer from '../components/Footer.astro';
 
 const { pageTitle } = Astro.props;
 
-const siteTitle = `${import.meta.env.PUBLIC_APP_NAME} | Faizal Chan's Website`;
+const siteTitle = `${import.meta.env.PUBLIC_APP_NAME} - Faizal Chan's Website`;
 const siteDescription =
     'Browse coding portfolios by Faizal Chan, featuring projects, applications, and programming expertise.';
 const openGraph = {
@@ -25,7 +25,7 @@ const openGraph = {
         <link rel="icon" type="image/png" href="/og.png" />
 
         <title>
-            {pageTitle ? `${pageTitle} | ${openGraph.title}` : siteTitle}
+            {pageTitle ? `${pageTitle} | ${siteTitle}` : siteTitle}
         </title>
         <meta name="description" content={siteDescription} />
         <meta name="generator" content={Astro.generator} />

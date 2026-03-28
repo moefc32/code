@@ -182,7 +182,7 @@
     <Statistics bind:chartCanvas {github} />
     <Membership {discord} {dataLoading} />
     <div id="github-container" class="flex flex-col gap-6 w-full">
-        <h2 class="pb-2 text-lg border-b-[1px] border-gray-300">
+        <h2 class="pb-2 text-lg border-b border-gray-300">
             Project Repositories
         </h2>
         <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4">

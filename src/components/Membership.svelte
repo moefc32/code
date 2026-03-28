@@ -6,7 +6,7 @@
 </script>
 
 <div class="flex flex-col my-3 w-full">
-    <h2 class="pb-2 text-lg text-center border-b-[1px] border-gray-300">
+    <h2 class="pb-2 text-lg text-center border-b border-gray-300">
         Currently a Proud
         <span class="hidden sm:inline">Community</span>
         Member of

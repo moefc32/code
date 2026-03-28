@@ -6,7 +6,7 @@
 </script>
 
 <div class="card flex-col gap-6 p-6 bg-black text-white w-full">
-    <h2 class="pb-2 text-lg text-center border-b-[1px] border-gray-300">
+    <h2 class="pb-2 text-lg text-center border-b border-gray-300">
         Project Statistics
     </h2>
     <div class="flex flex-col md:flex-row gap-3 w-full">
