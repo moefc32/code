@@ -3,6 +3,7 @@
 
     export let chartCanvas;
     export let github;
+    export let dataLoading;
 </script>
 
 <div class="card flex-col gap-6 p-6 bg-black text-white w-full">
@@ -10,7 +11,11 @@
         Project Statistics
     </h2>
     <div class="flex flex-col md:flex-row gap-3 w-full">
-        <div class="flex-1 p-6 bg-white w-full aspect-3/1 rounded-md">
+        <div
+            class="flex-1 p-6 bg-white w-full aspect-3/1 rounded-md {dataLoading
+                ? 'skeleton'
+                : ''}"
+        >
             <div class="w-full h-full" bind:this={chartCanvas}></div>
         </div>
         <div
@@ -21,7 +26,7 @@
                 src="https://github-readme-stats-eight-theta.vercel.app/api?username=moefc32&theme=onedark"
                 alt="GitHub statistics"
             />
-            {#if github?.url}
+            {#if !dataLoading}
                 <a href={github.url} target="_blank" class="btn btn-primary">
                     <SquareArrowOutUpRight size={14} />
                     View more on GitHub

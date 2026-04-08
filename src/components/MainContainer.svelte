@@ -79,7 +79,9 @@
 
         try {
             const { data } = await ky
-                .get(import.meta.env.PUBLIC_BACKEND)
+                .get(import.meta.env.PUBLIC_BACKEND, {
+                    timeout: 30 * 1000,
+                })
                 .json();
 
             techStacks = data.techStacks;
@@ -179,7 +181,7 @@
 <Banner {techStacks} {dataLoading} />
 
 <main class="flex flex-1 flex-col gap-9 mx-12 my-6">
-    <Statistics bind:chartCanvas {github} />
+    <Statistics bind:chartCanvas {github} {dataLoading} />
     <Membership {discord} {dataLoading} />
     <div id="github-container" class="flex flex-col gap-6 w-full">
         <h2 class="pb-2 text-lg border-b border-gray-300">
