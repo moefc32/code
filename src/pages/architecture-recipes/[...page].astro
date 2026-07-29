@@ -1,0 +1,112 @@
+---
+// @ts-nocheck
+import { getCollection } from 'astro:content';
+import { CalendarDays, ChevronLeft, ChevronRight } from '@lucide/svelte';
+import { blog } from '../../lib/config';
+import datePrettier from '../../lib/datePrettier';
+import Layout from '../../layouts/Posts.astro';
+
+const pageTitle = blog.title.long;
+
+export async function getStaticPaths({ paginate }) {
+    const posts = await getCollection('blog');
+    posts.sort((a, b) => b.data.date.getTime() - a.data.date.getTime());
+
+    return paginate(posts, { pageSize: blog.pageSize });
+}
+
+const { page } = Astro.props;
+const offset = blog.pageSize * (page.currentPage - 1);
+---
+
+<Layout {pageTitle}>
+    {
+        page.data.length > 0 ? (
+            <div class="flex flex-col gap-6 mb-6">
+                {page.data.map((post, i) => (
+                    <div
+                        class:list={[
+                            'flex gap-6 pt-3 border-t-1 border-gray-500',
+                            { 'mt-4': i > 0 },
+                        ]}
+                    >
+                        <div class="min-w-12 text-4xl font-light">
+                            {String(offset + (i + 1)).padStart(2, '0')}
+                        </div>
+                        <div class="flex flex-col gap-2">
+                            <div class="text-xl" title={post.data.title}>
+                                <a
+                                    href={`${blog.path}/${post.id}/`}
+                                    class="hover:text-blue-500"
+                                >
+                                    {post.data.title}
+                                </a>
+                            </div>
+                            <div class="flex items-center gap-2 text-gray-500">
+                                <CalendarDays size={16} />
+                                <span class="text-sm">
+                                    {datePrettier(
+                                        Math.trunc(
+                                            post.data.date.getTime() / 1000,
+                                        ),
+                                        { date: true },
+                                    )}
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                ))}
+            </div>
+        ) : (
+            <div class="my-auto text-gray-500 text-center">
+                - There are currently no posts to show -
+            </div>
+        )
+    }
+
+    {
+        (page.data.length >= blog.pageSize || page.currentPage > 1) && (
+            <nav class="join gap-1 mx-auto">
+                <a
+                    href={page.url.prev}
+                    class="join-item btn"
+                    title="Navigate to previous page"
+                    disabled={page.currentPage === 1}
+                >
+                    <ChevronLeft size={16} />
+                </a>
+
+                {Array.from({ length: page.lastPage }, (_, i) => {
+                    const pageNumber = i + 1;
+                    const href =
+                        pageNumber === 1
+                            ? `${blog.path}/`
+                            : `${blog.path}/${pageNumber}/`;
+
+                    return pageNumber === page.currentPage ? (
+                        <span class="join-item btn text-black" disabled>
+                            {pageNumber}
+                        </span>
+                    ) : (
+                        <a
+                            href={href}
+                            class="join-item btn"
+                            title={`Go to page ${pageNumber}`}
+                        >
+                            {pageNumber}
+                        </a>
+                    );
+                })}
+
+                <a
+                    href={page.url.next}
+                    class="join-item btn"
+                    title="Navigate to next page"
+                    disabled={page.currentPage === page.lastPage}
+                >
+                    <ChevronRight size={16} />
+                </a>
+            </nav>
+        )
+    }
+</Layout>

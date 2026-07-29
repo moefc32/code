@@ -22,10 +22,7 @@
     let github = {};
     let pageItems = [];
     let currentPage = null;
-    let pageSize = parseInt(
-        import.meta.env.PUBLIC_PAGINATION_ITEMS || '12',
-        10,
-    );
+    let pageSize = parseInt(import.meta.env.PUBLIC_GITHUB_ITEMS || '12', 10);
     let chart;
 
     function handleResize() {
