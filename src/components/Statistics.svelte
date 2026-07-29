@@ -1,5 +1,5 @@
 <script>
-    import { SquareArrowOutUpRight } from 'lucide-svelte';
+    import { SquareArrowOutUpRight } from '@lucide/svelte';
 
     export let chartCanvas;
     export let github;

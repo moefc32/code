@@ -1,5 +1,5 @@
 <script>
-    import { GitCommitHorizontal } from 'lucide-svelte';
+    import { GitCommitHorizontal } from '@lucide/svelte';
     export let item;
 </script>
 

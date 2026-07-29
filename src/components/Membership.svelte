@@ -1,5 +1,5 @@
 <script>
-    import { Users } from 'lucide-svelte';
+    import { Users } from '@lucide/svelte';
 
     export let discord;
     export let dataLoading;
