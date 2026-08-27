@@ -1,4 +1,6 @@
 <script>
+    import { owner } from '../lib/config';
+
     export let techStacks;
     export let dataLoading;
 </script>
@@ -10,22 +12,20 @@
 <div class="flex flex-col items-center gap-4 mx-12 -mt-36">
     <div class="avatar">
         <div class="w-44 border-white border-4 rounded-full">
-            <img src="/og.png" alt="Faizal Chan." />
+            <img src="/og.png" alt={owner.displayName} />
         </div>
     </div>
     <div class="flex flex-col items-center gap-2">
-        <div class="text-3xl">Faizal Chan.</div>
+        <div class="text-3xl">{owner.displayName}</div>
         <div class="text-gray-600 italic text-center">
-            <p class="mb-2 text-lg">
-                I build solutions by prioritizing clarity, efficiency, and
-                long-term sustainability over trends.
-            </p>
+            <p class="mb-2 text-lg">{owner.introduction}</p>
             <p class="text-sm">
                 <a
                     href="/philosophy-and-approach"
                     class="text-blue-500 hover:text-green-500 underline"
-                    >Learn more...</a
                 >
+                    Learn more...
+                </a>
             </p>
         </div>
     </div>

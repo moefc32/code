@@ -42,16 +42,12 @@ const offset = blog.pageSize * (page.currentPage - 1);
                                     {post.data.title}
                                 </a>
                             </div>
-                            <div class="flex items-center gap-2 text-gray-500">
+                            <div class="flex items-center gap-2 text-gray-500 text-sm">
                                 <CalendarDays size={16} />
-                                <span class="text-sm">
-                                    {datePrettier(
-                                        Math.trunc(
-                                            post.data.date.getTime() / 1000,
-                                        ),
-                                        { date: true },
-                                    )}
-                                </span>
+                                {datePrettier(
+                                    Math.trunc(post.data.date.getTime() / 1000),
+                                    { date: true },
+                                )}
                             </div>
                         </div>
                     </div>
