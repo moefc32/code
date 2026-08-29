@@ -12,7 +12,7 @@
 <div class="flex flex-col items-center gap-4 mx-12 -mt-36">
     <div class="avatar">
         <div class="w-44 border-white border-4 rounded-full">
-            <img src="/og.png" alt={owner.displayName} />
+            <img src="/res/favicon.png" alt={owner.displayName} />
         </div>
     </div>
     <div class="flex flex-col items-center gap-2">

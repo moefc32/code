@@ -11,7 +11,7 @@
                 label: 'See what drives the logic behind the build',
             },
             pretty: 'Code',
-            icon: '/node/code.svg',
+            icon: '/res/node/code.svg',
             link: 'https://code.mf-chan.com',
         },
         design: {
@@ -22,7 +22,7 @@
                 label: 'See what shapes the decisions behind them',
             },
             pretty: 'Design',
-            icon: '/node/design.svg',
+            icon: '/res/node/design.svg',
             link: 'https://design.mf-chan.com',
         },
         research: {
@@ -33,7 +33,7 @@
                 label: 'See how understanding takes shape',
             },
             pretty: 'Research',
-            icon: '/node/research.svg',
+            icon: '/res/node/research.svg',
             link: 'https://research.mf-chan.com',
         },
     };
