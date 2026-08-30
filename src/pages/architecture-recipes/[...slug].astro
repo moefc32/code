@@ -2,10 +2,11 @@
 // @ts-nocheck
 import { getCollection, render } from 'astro:content';
 import { ChevronRight, House } from '@lucide/svelte';
-import Layout from '../../layouts/Layout.astro';
-import { blog } from '../../lib/config';
+import { imageSizeFromFile } from 'image-size/fromFile';
+import { blog, owner } from '../../lib/config';
 import datePrettier from '../../lib/datePrettier';
 
+import Layout from '../../layouts/Layout.astro';
 import ArticleSidebar from '../../components/ArticleSidebar.astro';
 
 export async function getStaticPaths() {
@@ -36,9 +37,29 @@ function getReadTime(text, wordsPerMinute = 200) {
 const { post } = Astro.props;
 const { Content } = await render(post);
 const readTime = getReadTime(post.body);
+const imageDimensions = post.data.image
+    ? await imageSizeFromFile('./public/res/blog/featured/' + post.data.image)
+    : undefined;
+
+const articleMetadata = {
+    author: owner.displayName,
+    section: blog.title.long,
+    publishedTime: post.data.date.toISOString(),
+    ...(post.data.hook && {
+        description: post.data.hook,
+    }),
+    ...(post.data.image && {
+        image: {
+            url: `/res/blog/featured/${post.data.image}`,
+            width: imageDimensions?.width,
+            height: imageDimensions?.height,
+        },
+    }),
+    type: 'article',
+};
 ---
 
-<Layout pageTitle={post.data.title}>
+<Layout pageTitle={post.data.title} {articleMetadata}>
     <section
         class="flex flex-1 flex-col gap-6 mx-auto mt-6 mb-12 px-12 pt-28 leading-8 w-full max-w-screen-xl"
     >
