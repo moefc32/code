@@ -22,7 +22,7 @@
             <p class="text-sm">
                 <a
                     href="/philosophy-and-approach"
-                    class="text-blue-500 hover:text-green-500 underline"
+                    class="text-blue-500 hover:text-green-500 underline transition"
                 >
                     Learn more...
                 </a>

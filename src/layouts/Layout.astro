@@ -15,7 +15,9 @@ const siteTitle = `${import.meta.env.PUBLIC_APP_NAME} - Faizal Chan's Website`;
 const formattedTitle = pageTitle ? `${pageTitle} | ${siteTitle}` : siteTitle;
 const siteDescription =
     'Browse coding portfolios by Faizal Chan, featuring projects, applications, and programming expertise.';
-const siteUrl = import.meta.env.PUBLIC_SITE_URL.replace(/\/+$/, '');
+const siteUrl = import.meta.env.DEV
+    ? Astro.url.origin
+    : import.meta.env.PUBLIC_SITE_URL.replace(/\/+$/, '');
 
 const openGraph = {
     siteName: "Faizal Chan's Website",
@@ -44,11 +46,17 @@ const openGraph = {
         <meta property="og:title" content={formattedTitle} />
         <meta property="og:site_name" content={openGraph.siteName} />
         <meta property="og:description" content={openGraph.description} />
-        <meta property="og:image:url" content={openGraph.image.url} />
+        <meta
+            property="og:image:url"
+            content={new URL(openGraph.image.url, siteUrl).href}
+        />
         <meta property="og:image:width" content={openGraph.image.width} />
         <meta property="og:image:height" content={openGraph.image.height} />
         <meta property="og:type" content={openGraph.type} />
-        <meta property="og:url" content={`${siteUrl}${Astro.url.pathname}`} />
+        <meta
+            property="og:url"
+            content={new URL(Astro.url.pathname, siteUrl).href}
+        />
         {
             !!openGraph?.author && (
                 <meta property="article:author" content={openGraph.author} />
@@ -90,7 +98,7 @@ const openGraph = {
         <div style="display: contents">
             <Header />
             <slot />
-            <Footer />
+            <Footer type={openGraph.type} />
         </div>
     </body>
 </html>

@@ -1,11 +1,10 @@
 ---
-// @ts-nocheck
 import { getCollection } from 'astro:content';
 import { CalendarDays, ChevronLeft, ChevronRight } from '@lucide/svelte';
 import { blog } from '../../lib/config';
 import datePrettier from '../../lib/datePrettier';
 
-import Layout from '../../layouts/Posts.astro';
+import Layout from '../../layouts/Page.astro';
 
 const pageTitle = blog.title.long;
 
@@ -23,34 +22,47 @@ const offset = blog.pageSize * (page.currentPage - 1);
 <Layout {pageTitle}>
     {
         page.data.length > 0 ? (
-            <div class="flex flex-col gap-6 mb-6">
+            <div class="flex flex-col gap-6">
                 {page.data.map((post, i) => (
                     <div
                         class:list={[
-                            'flex gap-6 pt-3 border-t-1 border-gray-500',
-                            { 'mt-4': i > 0 },
+                            'pt-3 border-t-1 border-gray-300',
+                            { 'mt-3': i > 0 },
                         ]}
                     >
-                        <div class="min-w-12 text-4xl font-light">
-                            {String(offset + (i + 1)).padStart(2, '0')}
-                        </div>
-                        <div class="flex flex-col gap-2">
-                            <div class="text-xl" title={post.data.title}>
-                                <a
-                                    href={`${blog.path}/${post.id}/`}
-                                    class="hover:text-blue-500"
-                                >
-                                    {post.data.title}
-                                </a>
-                            </div>
-                            <div class="flex items-center gap-2 text-gray-500 text-sm">
-                                <CalendarDays size={16} />
-                                {datePrettier(
-                                    Math.trunc(post.data.date.getTime() / 1000),
-                                    { date: true },
+                        <a
+                            href={`${blog.path}/${post.id}/`}
+                            class="flex flex-col md:flex-row gap-3 md:gap-6"
+                        >
+                            <div class="w-full md:w-48">
+                                {post.data.image ? (
+                                    <div
+                                        class="bg-gray-500 bg-cover bg-center bg-no-repeat aspect-191/100 rounded-2xl md:rounded-lg shadow"
+                                        style={`background-image: url(/res/blog/featured/${post.data.image});`}
+                                    />
+                                ) : (
+                                    <div class="flex justify-center items-center p-3 bg-gray-200 text-gray-500 min-w-12 text-4xl font-light aspect-191/100 rounded-2xl md:rounded-lg shadow">
+                                        #
+                                        {String(offset + (i + 1)).padStart(
+                                            2,
+                                            '0',
+                                        )}
+                                    </div>
                                 )}
                             </div>
-                        </div>
+                            <div class="flex flex-1 flex-col gap-2">
+                                <div class="text-2xl">{post.data.title}</div>
+                                <div class="flex items-center gap-2 text-gray-500 text-sm">
+                                    <CalendarDays size={16} />
+                                    {datePrettier(
+                                        Math.trunc(
+                                            post.data.date.getTime() / 1000,
+                                        ),
+                                        { date: true },
+                                    )}
+                                </div>
+                            </div>
+                        </a>
                     </div>
                 ))}
             </div>

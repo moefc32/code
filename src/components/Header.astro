@@ -8,12 +8,13 @@ const APP_NAME = import.meta.env.PUBLIC_APP_NAME;
     <div
         class="flex justify-center items-center px-6 h-18 bg-white/85 border-1 border-gray-300 rounded-xl shadow-lg backdrop-blur-xs"
     >
-        <button
+        <a
+            href="/"
             class="text-2xl me-auto cursor-pointer outline-none ring-0 active:ring-0 focus:ring-0"
             data-header-title
         >
             {APP_NAME}
-        </button>
+        </a>
         <nav class="flex items-center gap-6 me-3">
             <a href={blog.path} title={blog.title.long}>{blog.title.short}</a>
             <a href="/philosophy-and-approach" title="Philosophy and Approach">
@@ -26,7 +27,9 @@ const APP_NAME = import.meta.env.PUBLIC_APP_NAME;
 <script>
     const btn = document.querySelector('[data-header-title]');
 
-    btn?.addEventListener('click', () => {
+    btn?.addEventListener('click', evt => {
+        evt.preventDefault();
+
         if (window.location.pathname === '/') {
             window.scrollTo({ top: 0, behavior: 'smooth' });
         } else {
