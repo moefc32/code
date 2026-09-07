@@ -2,6 +2,7 @@
 import '../styles/global.css';
 import 'aos/dist/aos.css';
 import { imageSizeFromFile } from 'image-size/fromFile';
+import { metadata } from '../lib/config';
 
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
@@ -11,23 +12,20 @@ const { pageTitle, articleMetadata } = Astro.props;
 const defaultFavicon = '/res/favicon.png';
 const imageDimensions = await imageSizeFromFile('./public' + defaultFavicon);
 
-const siteTitle = `${import.meta.env.PUBLIC_APP_NAME} - Faizal Chan's Website`;
-const formattedTitle = pageTitle ? `${pageTitle} | ${siteTitle}` : siteTitle;
-const siteDescription =
-    'Browse coding portfolios by Faizal Chan, featuring projects, applications, and programming expertise.';
+const formattedTitle = pageTitle
+    ? `${pageTitle} | ${metadata.title}`
+    : metadata.title;
 const siteUrl = import.meta.env.DEV
     ? Astro.url.origin
     : import.meta.env.PUBLIC_SITE_URL.replace(/\/+$/, '');
 
 const openGraph = {
-    siteName: "Faizal Chan's Website",
-    description: 'Coding portfolios by Faizal Chan.',
     image: {
         url: defaultFavicon,
         width: imageDimensions?.width,
         height: imageDimensions?.height,
     },
-    type: 'website',
+    ...metadata,
     ...articleMetadata,
 };
 ---
@@ -40,7 +38,7 @@ const openGraph = {
         <link rel="icon" type="image/png" href={defaultFavicon} />
 
         <title>{formattedTitle}</title>
-        <meta name="description" content={siteDescription} />
+        <meta name="description" content={metadata.description} />
         <meta name="generator" content={Astro.generator} />
 
         <meta property="og:title" content={formattedTitle} />
