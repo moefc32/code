@@ -197,9 +197,9 @@
                 {/if}
             {:else}
                 {#each Array(pageSize) as _, i}
-                    <div class="flex flex-col">
+                    <div class="bg-gray-200 skeleton">
                         <div
-                            class="card bg-gray-200 w-full h-[154px] rounded-lg border-1 border-gray-300 shadow-lg skeleton"
+                            class="h-[154px] border-1 border-gray-300 shadow-lg"
                         ></div>
                     </div>
                 {/each}
