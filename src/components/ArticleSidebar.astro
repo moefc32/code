@@ -92,7 +92,7 @@ const { title } = Astro.props;
     </div>
 </aside>
 
-<script is:inline define:vars={{ title: encodeURIComponent(title) }}>
+<script define:vars={{ title: encodeURIComponent(title) }}>
     const buttonCopyLink = document.querySelector('[data-copy-link]');
     const originalButtonCopyLinkText = buttonCopyLink?.innerHTML;
     let copyTimeout;

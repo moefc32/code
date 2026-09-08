@@ -7,7 +7,7 @@
     <a
         href={item.url}
         target="_blank"
-        class="card flex-row gap-3 p-4 w-full rounded-lg border-1 border-gray-300 shadow-lg relative"
+        class="flex flex-row gap-3 p-4 w-full hover:bg-gray-100 border-1 border-gray-300 transition shadow-lg relative"
     >
         <GitCommitHorizontal size={28} />
         <div class="flex flex-1 flex-col overflow-hidden">
