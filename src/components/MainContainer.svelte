@@ -175,9 +175,31 @@
     }
 </script>
 
-<Banner {techStacks} {dataLoading} />
+<Banner />
 
 <main class="flex flex-1 flex-col gap-9 mx-12 my-6">
+    <div class="flex flex-col items-center gap-4 mx-12">
+        <div class="flex flex-wrap justify-center gap-0.5 mb-3 max-w-140">
+            {#if !dataLoading}
+                {#each techStacks as item, i}
+                    <span
+                        class="badge {item.dark ? 'text-black' : 'text-white'}"
+                        style="background: {item.color};"
+                    >
+                        {item.name}
+                    </span>
+                {/each}
+            {:else}
+                {#each Array(12) as _, i}
+                    <span
+                        class="badge bg-gray-200 w-24 border-1 border-gray-300 skeleton"
+                    >
+                        &nbsp;
+                    </span>
+                {/each}
+            {/if}
+        </div>
+    </div>
     <Statistics bind:chartCanvas {github} {dataLoading} />
     <Membership {discord} {dataLoading} />
     <div id="github-container" class="flex flex-col gap-6 w-full">

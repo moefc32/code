@@ -39,7 +39,7 @@
                 </div>
             {/each}
         {:else}
-            {#each Array(5) as _, i}
+            {#each Array(7) as _, i}
                 <div
                     class="w-20 bg-gray-200 border-1 border-gray-300 aspect-square rounded-2xl shadow-lg skeleton"
                 ></div>

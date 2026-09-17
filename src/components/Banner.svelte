@@ -1,16 +1,15 @@
 <script>
     import { owner } from '../lib/config';
-
-    export let techStacks;
-    export let dataLoading;
 </script>
 
 <section
-    class="mb-5 px-3 pt-30 pb-5 bg-[linear-gradient(to_bottom_left,rgba(33,150,243,0.75),rgba(76,175,80,0.75))] bg-fixed text-white text-center h-64"
+    class="mb-5 px-3 pt-30 pb-5 bg-[linear-gradient(to_bottom_left,rgba(33,150,243,0.75),rgba(76,175,80,0.75))] bg-fixed text-white text-center h-80"
 ></section>
 
-<div class="flex flex-col items-center gap-4 mx-12 -mt-36">
-    <div class="avatar">
+<div
+    class="flex flex-col items-center gap-4 -mt-21 px-12 bg-white rounded-t-3xl"
+>
+    <div class="avatar -mt-32">
         <div class="w-44 border-white border-4 rounded-full">
             <img src={owner.displayPicture} alt={owner.displayName} />
         </div>
@@ -30,24 +29,4 @@
         </div>
     </div>
     <hr class="mt-1 mb-6 bg-gray-300 w-12 h-1 border-0" />
-    <div class="flex flex-wrap justify-center gap-0.5 mb-3 max-w-140">
-        {#if !dataLoading}
-            {#each techStacks as item, i}
-                <span
-                    class="badge {item.dark ? 'text-black' : 'text-white'}"
-                    style="background: {item.color};"
-                >
-                    {item.name}
-                </span>
-            {/each}
-        {:else}
-            {#each Array(9) as _, i}
-                <span
-                    class="badge bg-gray-200 w-24 border-1 border-gray-300 skeleton"
-                >
-                    &nbsp;
-                </span>
-            {/each}
-        {/if}
-    </div>
 </div>
