@@ -1,10 +1,8 @@
-import { setMaxListeners } from 'events';
 import { defineConfig } from 'astro/config';
+import mdx from '@astrojs/mdx';
 import svelte from '@astrojs/svelte';
 import tailwindcss from '@tailwindcss/vite';
 import AstroPWA from '@vite-pwa/astro';
-
-setMaxListeners(12);
 
 export default defineConfig({
     vite: {
@@ -21,6 +19,7 @@ export default defineConfig({
     integrations: [
         svelte(),
         AstroPWA(),
+        mdx(),
     ],
     server: {
         port: 4000,
